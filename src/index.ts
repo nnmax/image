@@ -38,7 +38,9 @@ import Uploader from './uploader';
 import { IconAddBorder, IconStretch, IconAddBackground, IconPicture, IconText } from '@codexteam/icons';
 import type { ActionConfig, UploadResponseFormat, ImageToolData, ImageConfig, HTMLPasteEventDetailExtended, ImageSetterParam, FeaturesConfig } from './types/types';
 
-type ImageToolConstructorOptions = BlockToolConstructorOptions<ImageToolData, ImageConfig>;
+export * from './types/types';
+
+export type ImageToolConstructorOptions = BlockToolConstructorOptions<ImageToolData, ImageConfig>;
 
 /**
  * Implementation of ImageTool class
@@ -382,9 +384,8 @@ export default class ImageTool implements BlockTool {
    */
   private set image(file: ImageSetterParam | undefined) {
     this._data.file = file || { url: '' };
-
-    if (file && file.url) {
-      this.ui.fillImage(file.url);
+    if (this._data.file.url) {
+      this.ui.fillImage(this._data.file);
     }
   }
 
